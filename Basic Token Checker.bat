@@ -30,7 +30,7 @@ if /I "%c%" EQU "N" goto 2
 :2
 exit
 :3
-if not exist "tokens.txt" echo "tokens.txt" not found!
+if not exist "tokens.txt" echo "tokens.txt" not found! && goto 0
 for /F "usebackq tokens=*" %%A in ("tokens.txt") do (
 curl --silent -H "Content-Type: application/json" -H "Authorization: %%A" https://discordapp.com/api/v8/users/@me > %temp%\tokeninfo.json
 find /i "401: Unauthorized" %temp%\tokeninfo.json >NUL
